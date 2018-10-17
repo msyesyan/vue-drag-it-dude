@@ -52,7 +52,7 @@
 
         this.parent.width = this.parentWidth || this.elem.parentNode.offsetWidth;
         this.parent.height = this.parentHeight || this.elem.parentNode.offsetHeight;
-        
+
         if (newHeight > this.parent.height - this.top) {
           const newTop = this.parent.height - this.height;
           this.top = newTop;
@@ -108,7 +108,7 @@
         this.top = newTop;
       },
       hang(e) {
-        this.$emit('activated');
+        this.$emit('activated', e);
         this.parent.width = this.parentWidth || this.elem.parentNode.offsetWidth;
         this.parent.height = this.parentHeight || this.elem.parentNode.offsetHeight;
         this.shiftX = e.pageX
@@ -128,8 +128,8 @@
           this.elem.addEventListener('touchmove', this.elementMove);
         }
       },
-      drop() {
-        this.$emit('dropped');
+      drop(e) {
+        this.$emit('dropped', e);
         document.body.style.overflow = null;
         this.elem.removeEventListener('mousemove', this.elementMove, false);
         this.elem.removeEventListener('touchmove', this.elementMove, false);
